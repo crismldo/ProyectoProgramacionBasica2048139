@@ -146,28 +146,113 @@ void ALTA()
 void LISTA()
 {
 	char flecha = 16,n=164;
+	int opcion;
+	string buscado;
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	for (int i = 0; i < alta; i++)
+	printf("Desea filtrar la lista por: ");
+	printf("1.- Genero \n2.-Clasificacion \n3.-Consola \n4.-Imprimir lista completa \n");
+	scanf_s("%d", &opcion);
+	switch (opcion)
 	{
-		if (status[i] == "ELIMINADO")
+	case 1:
+		printf("¿Que genero desea buscar?");
+		while (getchar() != '\n');
+		getline(cin, buscado);
+		for (int i = 0; i < alta; i++)
 		{
-			color(hConsole, 12);
-			printf("REGISTRO %d ELIMINADO \n",i+1);
-			color(hConsole, 7);
+			if (buscado == genero[i]) 
+			{
+				if (status[i] == "ELIMINADO")
+				{
+					//No pude utilizar =! ya que me decia que status[i] debia ser tipo boleano
+				}
+				else
+				{
+					color(hConsole, 6);
+					printf("%c Registro  %d \n", flecha, i + 1);
+					color(hConsole, 7);
+					printf("Item: %d \nNombre: %s \nA%co de Lanzamiento: %d \n", numitem[i], nombre[i].c_str(), n, año[i]);
+					printf("Genero: %s \nClasificacion: %s \nconsola: %s \n", genero[i].c_str(), clasificacion[i].c_str(), consola[i].c_str());
+					printf("Caracteristicas: %s \nDescripcion: %s \n", caracteristicas[i].c_str(), descripcion[i].c_str());
+					printf("Precio: $ %f \nIVA: %f \nTOTAL: $ %f \n", precio[i], iva[i], total[i]);
+				}
+			}
 		}
-		else
+		break;
+
+	case 2:
+		printf("¿Que clasificacion desea buscar?");
+		while (getchar() != '\n');
+		getline(cin, buscado);
+		for (int i = 0; i < alta; i++)
 		{
-			color(hConsole, 6);
-			printf("%c Registro  %d \n",flecha, i + 1);
-			color(hConsole, 7);
-			printf("Item: %d \nNombre: %s \nA%co de Lanzamiento: %d \n", numitem[i], nombre[i].c_str(),n, año[i]);
-			printf("Genero: %s \nClasificacion: %s \nconsola: %s \n", genero[i].c_str(), clasificacion[i].c_str(),consola[i].c_str());
-			printf("Caracteristicas: %s \nDescripcion: %s \n", caracteristicas[i].c_str(), descripcion[i].c_str());
-			printf("Precio: $ %f \nIVA: %f \nTOTAL: $ %f \n", precio[i],iva[i],total[i]);
-		
+			if (buscado == clasificacion[i])
+			{
+				if (status[i] == "ELIMINADO")
+				{}
+				else
+				{
+					color(hConsole, 6);
+					printf("%c Registro  %d \n", flecha, i + 1);
+					color(hConsole, 7);
+					printf("Item: %d \nNombre: %s \nA%co de Lanzamiento: %d \n", numitem[i], nombre[i].c_str(), n, año[i]);
+					printf("Genero: %s \nClasificacion: %s \nconsola: %s \n", genero[i].c_str(), clasificacion[i].c_str(), consola[i].c_str());
+					printf("Caracteristicas: %s \nDescripcion: %s \n", caracteristicas[i].c_str(), descripcion[i].c_str());
+					printf("Precio: $ %f \nIVA: %f \nTOTAL: $ %f \n", precio[i], iva[i], total[i]);
+				}
+			}
 		}
+		break;
+
+	case 3:
+		printf("¿Que consola desea buscar?");
+		while (getchar() != '\n');
+		getline(cin, buscado);
+		for (int i = 0; i < alta; i++)
+		{
+			if (buscado == consola[i])
+			{
+				if (status[i] == "ELIMINADO")
+				{}
+				else
+				{
+					color(hConsole, 6);
+					printf("%c Registro  %d \n", flecha, i + 1);
+					color(hConsole, 7);
+					printf("Item: %d \nNombre: %s \nA%co de Lanzamiento: %d \n", numitem[i], nombre[i].c_str(), n, año[i]);
+					printf("Genero: %s \nClasificacion: %s \nconsola: %s \n", genero[i].c_str(), clasificacion[i].c_str(), consola[i].c_str());
+					printf("Caracteristicas: %s \nDescripcion: %s \n", caracteristicas[i].c_str(), descripcion[i].c_str());
+					printf("Precio: $ %f \nIVA: %f \nTOTAL: $ %f \n", precio[i], iva[i], total[i]);
+				}
+			}
+		}
+		break;
+
+	case 4:
+		for (int i = 0; i < alta; i++)
+		{
+			if (status[i] == "ELIMINADO")
+			{
+				color(hConsole, 12);
+				printf("REGISTRO %d ELIMINADO \n", i + 1);
+				color(hConsole, 7);
+			}
+			else
+			{
+				color(hConsole, 6);
+				printf("%c Registro  %d \n", flecha, i + 1);
+				color(hConsole, 7);
+				printf("Item: %d \nNombre: %s \nA%co de Lanzamiento: %d \n", numitem[i], nombre[i].c_str(), n, año[i]);
+				printf("Genero: %s \nClasificacion: %s \nconsola: %s \n", genero[i].c_str(), clasificacion[i].c_str(), consola[i].c_str());
+				printf("Caracteristicas: %s \nDescripcion: %s \n", caracteristicas[i].c_str(), descripcion[i].c_str());
+				printf("Precio: $ %f \nIVA: %f \nTOTAL: $ %f \n", precio[i], iva[i], total[i]);
+
+			}
+		}
+		break;
 	}
+	
 }
 
 void ARCHIVO()
